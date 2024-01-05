@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 
-import Counter from './components/Counter/Counter.jsx';
-import Header from './components/Header.jsx';
-import { log } from './log.js';
+import Counter from './components/Counter/Counter';
+import Header from './components/Header';
+import { log } from './log';
 
 function App() {
   log('<App /> rendered');
@@ -10,7 +10,7 @@ function App() {
   const [enteredNumber, setEnteredNumber] = useState(0);
   const [chosenCount, setChosenCount] = useState(0);
 
-  function handleChange(event) {
+  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     setEnteredNumber(+event.target.value);
   }
 

@@ -4,7 +4,7 @@ import IconButton from '../UI/IconButton.jsx';
 import MinusIcon from '../UI/Icons/MinusIcon.jsx';
 import PlusIcon from '../UI/Icons/PlusIcon.jsx';
 import CounterOutput from './CounterOutput.jsx';
-import { log } from '../../log.js';
+import { log } from '../../log';
 
 function isPrime(number) {
   log(
