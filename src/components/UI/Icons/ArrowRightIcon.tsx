@@ -1,7 +1,10 @@
+import React from 'react';
 import { log } from '../../../log';
 
-export default function PlusIcon(props) {
-  log('<PlusIcon /> rendered', 3);
+export interface ArrowRightIconProps extends React.SVGProps<SVGSVGElement> {}
+
+export default function ArrowRightIcon(props: ArrowRightIconProps) {
+  log('<ArrowRightIcon /> rendered', 3);
 
   return (
     <svg
@@ -15,7 +18,7 @@ export default function PlusIcon(props) {
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
-        d="M12 4.5v15m7.5-7.5h-15"
+        d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"
       />
     </svg>
   );

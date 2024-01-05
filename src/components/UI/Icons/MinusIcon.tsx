@@ -1,6 +1,9 @@
+import React from 'react';
 import { log } from '../../../log';
 
-export default function MinusIcon(props) {
+export interface MinusIconProps extends React.SVGProps<SVGSVGElement> {}
+
+export default function MinusIcon(props: MinusIconProps) {
   log('<MinusIcon /> rendered', 3);
 
   return (
