@@ -1,3 +1,4 @@
+import React from 'react';
 import { log } from '../log';
 import logoImg from '../assets/logo.png';
 
