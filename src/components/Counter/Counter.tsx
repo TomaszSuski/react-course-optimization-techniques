@@ -6,6 +6,7 @@ import PlusIcon from "../UI/Icons/PlusIcon";
 import CounterOutput from "./CounterOutput";
 import { log } from "../../log.js";
 import CounterHistory from "./CounterHistory";
+import { getNewId } from "./helpers";
 
 export interface CounterProps {
   initialCount: number;
@@ -40,22 +41,31 @@ const Counter = memo(function Counter({ initialCount }: CounterProps) {
 
   // const [counter, setCounter] = useState(initialCount);
   // now tracking counter changes in an array
-  const [counterChanges, setCounterChanges] = useState([initialCount]);
+  const [counterChanges, setCounterChanges] = useState([
+    { id: 1, value: initialCount },
+  ]);
 
+  console.log("counterChanges", counterChanges);
   const currentCounter = counterChanges.reduce(
-    (prevCounter, counterChange) => prevCounter + counterChange,
+    (prevCounter, counterChange) => prevCounter + counterChange.value,
     0
   );
 
   // useCallback() to avoid re-creating the function on every re-render while memo() is used on the component accepting the function as prop
   const handleDecrement = useCallback(function handleDecrement() {
     // setCounter((prevCounter) => prevCounter - 1);
-    setCounterChanges((prevCounterChanges) => [-1, ...prevCounterChanges]);
+    setCounterChanges((prevCounterChanges) => [
+      { value: -1, id: getNewId(prevCounterChanges) },
+      ...prevCounterChanges,
+    ]);
   }, []);
 
   const handleIncrement = useCallback(function handleIncrement() {
     // setCounter((prevCounter) => prevCounter + 1);
-    setCounterChanges((prevCounterChanges) => [1, ...prevCounterChanges]);
+    setCounterChanges((prevCounterChanges) => [
+      { value: 1, id: getNewId(prevCounterChanges) },
+      ...prevCounterChanges,
+    ]);
   }, []);
 
   return (

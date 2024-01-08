@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { log } from "../../log";
 
 export interface CounterHistoryProps {
-  history: number[];
+  history: { id: number; value: number }[];
 }
 
 interface HistoryItemProps {
@@ -37,8 +37,10 @@ export default function CounterHistory({ history }: CounterHistoryProps) {
         // <HistoryItem key={index} count={count} />
 
         // using the array length as key is not recommended, here it causes a problem with the selected state because the key is always the same
-        <HistoryItem key={history.length} count={count} />
+        // <HistoryItem key={history.length} count={count} />
 
+        // the keys must be unique. Adding unique id for every item in the array solves the problem
+        <HistoryItem key={count.id} count={count.value} />
       ))}
     </ol>
   );
