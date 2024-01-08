@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useState } from "react";
+import React, { memo, useCallback, useState, useMemo } from "react";
 
 import IconButton from "../UI/IconButton";
 import MinusIcon from "../UI/Icons/MinusIcon";
@@ -30,7 +30,9 @@ function isPrime(number: number) {
 //using memo() to avoid re-rendering when props are not changed, even if parent cpomponent is re-rendered
 const Counter = memo(function Counter({ initialCount }: CounterProps) {
   log("<Counter /> rendered", 1);
-  const initialCountIsPrime = isPrime(initialCount);
+
+  // useMemo() to avoid re-calculating the value on every re-render
+  const initialCountIsPrime = useMemo(() => isPrime(initialCount), [initialCount]);
 
   const [counter, setCounter] = useState(initialCount);
 
