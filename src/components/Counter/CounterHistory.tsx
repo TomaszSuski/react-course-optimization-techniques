@@ -34,7 +34,11 @@ export default function CounterHistory({ history }: CounterHistoryProps) {
       {history.map((count, index) => (
         // using index as key is not recommended, here it causes a problem with the selected state
         // when the list is re-ordered, the index of each item changes, so the selected state is not preserved
-        <HistoryItem key={index} count={count} />
+        // <HistoryItem key={index} count={count} />
+
+        // using the array length as key is not recommended, here it causes a problem with the selected state because the key is always the same
+        <HistoryItem key={history.length} count={count} />
+
       ))}
     </ol>
   );
