@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { log } from "../../log";
 
 export interface IconButtonProps
@@ -6,7 +6,12 @@ export interface IconButtonProps
   icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
 }
 
-export default function IconButton({ children, icon, ...props }: IconButtonProps) {
+// the component accepts onClick inside ...props, so the oClick must be wrapped by useCallback in parent component to avoid rereenders while using memo() on this component
+const IconButton = memo(function IconButton({
+  children,
+  icon,
+  ...props
+}: IconButtonProps) {
   log("<IconButton /> rendered", 2);
 
   const Icon = icon;
@@ -16,4 +21,6 @@ export default function IconButton({ children, icon, ...props }: IconButtonProps
       <span className="button-text">{children}</span>
     </button>
   );
-}
+});
+
+export default IconButton;

@@ -1,4 +1,4 @@
-import React, { memo, useState } from "react";
+import React, { memo, useCallback, useState } from "react";
 
 import IconButton from "../UI/IconButton";
 import MinusIcon from "../UI/Icons/MinusIcon";
@@ -34,13 +34,14 @@ const Counter = memo(function Counter({ initialCount }: CounterProps) {
 
   const [counter, setCounter] = useState(initialCount);
 
-  function handleDecrement() {
+  // useCallback() to avoid re-creating the function on every re-render while memo() is used on the component accepting the function as prop
+  const handleDecrement = useCallback(function handleDecrement() {
     setCounter((prevCounter) => prevCounter - 1);
-  }
+  }, []);
 
-  function handleIncrement() {
+  const handleIncrement = useCallback(function handleIncrement() {
     setCounter((prevCounter) => prevCounter + 1);
-  }
+  }, []);
 
   return (
     <section className="counter">
