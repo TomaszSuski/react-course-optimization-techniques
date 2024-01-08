@@ -19,7 +19,9 @@ function App() {
       <Header />
       <main>
         <ConfigureCounter onSetCount={handleSetCount} />
-        <Counter initialCount={chosenCount} />
+        {/* ading key prop to the component will reset it when key changes,
+        therefore it will be rerenedered when chosenCount change */}
+        <Counter key={chosenCount} initialCount={chosenCount} />
         <Counter initialCount={0} />
       </main>
     </>
